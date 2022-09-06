@@ -6,7 +6,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="3.1.26" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="3.1.28" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Areas\Demo\Views\" />
+    <Folder Include="Areas\Demo\ViewModel\" />
+    <Folder Include="Models\" />
+    <Folder Include="Data\" />
   </ItemGroup>
 
 </Project>

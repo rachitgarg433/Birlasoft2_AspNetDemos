@@ -12,9 +12,11 @@ namespace MyASPDemos.Pages
     {
         private readonly ILogger<IndexModel> _logger;
 
+        public string AuthorName { get; private set; }
         public IndexModel(ILogger<IndexModel> logger)
         {
             _logger = logger;
+            AuthorName="Rachit Garg";
         }
 
         public void OnGet()

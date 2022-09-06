@@ -7,10 +7,10 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="3.1.28" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.5" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Areas\Demo\Views\" />
     <Folder Include="Areas\Demo\ViewModel\" />
     <Folder Include="Models\" />
     <Folder Include="Data\" />

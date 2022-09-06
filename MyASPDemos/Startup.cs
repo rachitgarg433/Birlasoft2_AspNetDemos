@@ -54,7 +54,7 @@ namespace MyASPDemos
                 //Register the end points for the routes in area
                 endpoints.MapControllerRoute(
                     name: "areas",
-                    pattern: "{areas}/{Controller}/{action}/{od?}");
+                    pattern: "{area}/{controller=Home}/{action=Index}/{id?}");
 
                 //Register the end point for the routes not in any area.
 

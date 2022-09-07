@@ -1,0 +1,327 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] E-CommerceHomePage</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<style>
+    ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: #333333;
+    }
+
+    li {
+        float: left;
+    }
+
+        li a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 16px;
+            text-decoration: none;
+        }
+
+            li a:hover {
+                background-color: #111111;
+            }
+
+    .intro {
+        height: calc(100vh - 112px);
+        overflow: hidden;
+        position: relative;
+        z-index: 0;
+        background-color: lightgray;
+        background-image: url('wallet1.jpg');
+        background-repeat: no-repeat;
+        background-attachment: scroll;
+        background-size: 100% 100%;
+        /*background-blend-mode: overlay;*/
+    }
+
+    .intro-content {
+        height: 100%;
+    }
+
+
+
+    .dis {
+        display: inline-block;
+        font-size: 40px;
+        color: #00ff00;
+    }
+
+    .intro h1 {
+        margin-top: 50px;
+        line-height: 1.3;
+        font-weight: 600;
+        font-size: 50px;
+        text-align: center;
+    }
+
+    .intro h2 {
+        line-height: 1.3;
+        font-weight: 600;
+        font-size: 45px;
+        text-align: center;
+    }
+
+
+    .intro h3 {
+        font-weight: 400;
+        font-size: 40px;
+        text-align: center;
+    }
+
+    .btn {
+        display: inline-block;
+        border-radius: 80px;
+        background-color: #ff4321;
+        padding: 20px 80px;
+        color: white;
+        font-weight: 600;
+        box-shadow: 0 16px 24px rgba(0, 0, 0, 0.3);
+        margin-top: 75px;
+        margin-left: 600px;
+    }
+
+
+
+
+    /* Section */
+    .section {
+        padding: 160px 0 0 0;
+    }
+
+
+    .h {
+        font-size: 3rem;
+        text-align: center;
+        margin-bottom: 5rem;
+        font-weight: 600;
+    }
+
+        .h h1 {
+            font-weight: 400;
+        }
+
+        .h span {
+            color: #ff4321;
+        }
+
+    .ac-center {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 80px;
+        margin-bottom: 80px;
+    }
+
+    .ac {
+        text-align: center;
+        padding-bottom: 16px;
+        transition: all 500ms ease-in-out;
+    }
+
+    /*.ac:hover {
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .ac .img-cover {
+      overflow: hidden;
+    }
+
+    .ac img {
+      transition: all 500ms ease-in-out;
+    }
+
+    .ac:hover img {
+      transform: scale(1.2);
+    }*/
+
+    /*media only screen and (max-width: 567px) {
+      .h {
+        font-size: 32px;
+      }
+    }*/
+
+    .ab {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        grid-template-rows: repeat(8, 4vw);
+        gap: 2rem;
+    }
+
+        .ab .item {
+            overflow: hidden;
+        }
+
+        .ab img {
+            object-fit: cover;
+            height: 100%;
+            width: 100%;
+            transition: all 500ms ease-out;
+        }
+
+        .ab .item-1 img {
+            object-fit: fill;
+        }
+
+        .ab img:hover {
+            transform: scale(1.2);
+        }
+
+    /*.item-1 {
+      grid-column-start: 1;
+      grid-column-end: 3;
+      grid-row-start: 1;
+      grid-row-end: 9;
+    }
+
+    .item-2 {
+      grid-column-start: 5;
+      grid-column-end: 7;
+      grid-row-start: 1;
+      grid-row-end: 9;
+    }
+    .item-3 {
+      grid-column-start: 3;
+      grid-column-end: 5;
+      grid-row-start: 1;
+      grid-row-end: 5;
+    }
+
+    .item-4 {
+      grid-column-start: 3;
+      grid-column-end: 5;
+      grid-row-start: 5;
+      grid-row-end: 9;
+    }*/
+
+    /*media only screen and (max-width: 600px) {
+      .gallary {
+        grid-template-columns: repeat(6, 1fr);
+        grid-template-rows: repeat(20, 4vw);
+      }*/
+
+    .item-1 {
+        grid-column-start: 1;
+        grid-column-end: 7;
+        grid-row-start: 1;
+        grid-row-end: 7;
+    }
+
+    .item-2 {
+        grid-column-start: 1;
+        grid-column-end: 7;
+        grid-row-start: 7;
+        grid-row-end: 11;
+    }
+
+    .item-3 {
+        grid-column-start: 1;
+        grid-column-end: 7;
+        grid-row-start: 11;
+        grid-row-end: 15;
+    }
+
+    .item-4 {
+        grid-column-start: 1;
+        grid-column-end: 7;
+        grid-row-start: 15;
+        grid-row-end: 19;
+    }
+
+    }
+</style>
+
+<body style="background-color:darkgray">
+    <!-- HEADER -->
+
+
+    <header class="header">
+        <nav>
+            <img src="https://www.onlinelogomaker.com/blog/wp-content/uploads/2017/06/shopping-online.jpg" style="width:250px;height:180px;" class="logob">
+            <ul>
+                <li><a href="">HOME</a></li>
+                <li><a href="">MENS</a></li>
+                <li><a href="">WOMENS</a></li>
+                <li><a href="">WATCHES</a></li>
+                <li><a href="">LAPTOPS</a></li>
+                <li><a href="">About US</a></li>
+
+            </ul>
+        </nav>
+        <!-- Intro -->
+        <div class="intro">
+            <h1>TRY OUT THESE PRODUCTS</h1>
+            <h2>
+                Up to
+                <span class="dis">
+                    50%
+                    Discount Off
+                </span>
+                on this Navratraa Festive Offer
+            </h2>
+            <h3>From 1st Oct to 10th Oct</h3>
+            <a href="#" class="btn">SHOP NOW</a>
+        </div>
+
+    </header>
+
+
+
+    <!-- Shop By Category -->
+    <section class="section">
+        <div class="h">
+            <h1><span>Shop By</span> Categories of all</h1>
+        </div>
+        <div class="ab box">
+            <div class="item item-1">
+                <img src="https://images-eu.ssl-images-amazon.com/images/I/619SqQW1NYL._AC._SR360,460.jpg" alt="Mens T-Shirts" style="width:500px;height:600px;" />
+            </div>
+            <div class="item item-2">
+                <img src="https://5.imimg.com/data5/PL/PL/MY-62197866/nike-airmax-shoes-250x250.jpg" alt="Mens shoes " style="width:500px;height:600px;" />
+            </div>
+            <div class="item item-3">
+                <img src="https://cdn.shopify.com/s/files/1/0637/4834/1981/products/6_NLFS-EBA1381-C-PEACHMODE_large.jpg?v=1657345394" alt="Ladies gowns" style="width:500px;height:600px;" />
+            </div>
+            <div class="item item-4">
+                <img src="https://cdn.shopify.com/s/files/1/0027/2357/7914/articles/A22A1281_1944x2915.jpg?v=1597178612" alt="" style="width:500px;height:600px;" />
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-----footer---
+    <section id="footer">
+
+        <div class="foot">
+            <ul>
+                <li><a href="">HOME</a></li>
+                <li><a href="">ABOUT US</a></li>
+                <li><a href="">CONTACT US</a></li>
+
+            </ul>
+
+            <div class="social-links">
+                <a href=""><i class="fab fa-linkedin"></i></a>
+                <a href=""><i class="fab fa-behance"></i></a>
+                <a href=""><i class="fab fa-dribbble"></i></a>
+                <a href=""><i class="fab fa-instagram"></i></a>
+              </div>
+        </div>
+    </section>  --->
+</body>
+</html>

@@ -2,23 +2,25 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using Task4.Data;
+using MyASPDemos.Data;
 
-namespace Task4.Migrations
+namespace MyASPDemos.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220912083619_AddedBookModel")]
+    partial class AddedBookModel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.28")
+                .HasAnnotation("ProductVersion", "3.1.25")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("Task4.Areas.Models.Book", b =>
+            modelBuilder.Entity("MyASPDemos.Models.Book", b =>
                 {
                     b.Property<int>("BookId")
                         .ValueGeneratedOnAdd()
@@ -46,7 +48,7 @@ namespace Task4.Migrations
                     b.ToTable("Books");
                 });
 
-            modelBuilder.Entity("Task4.Areas.Models.Category", b =>
+            modelBuilder.Entity("MyASPDemos.Models.Category", b =>
                 {
                     b.Property<int>("CategoryId")
                         .ValueGeneratedOnAdd()
@@ -60,45 +62,14 @@ namespace Task4.Migrations
 
                     b.HasKey("CategoryId");
 
-                    b.ToTable("Categories");
+                    b.ToTable("Category");
                 });
 
-            modelBuilder.Entity("Task4.Models.Author", b =>
+            modelBuilder.Entity("MyASPDemos.Models.Book", b =>
                 {
-                    b.Property<int>("AuthorId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("AuthorName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(100)")
-                        .HasMaxLength(100);
-
-                    b.Property<int>("BookId")
-                        .HasColumnType("int");
-
-                    b.HasKey("AuthorId");
-
-                    b.HasIndex("BookId");
-
-                    b.ToTable("Authors");
-                });
-
-            modelBuilder.Entity("Task4.Areas.Models.Book", b =>
-                {
-                    b.HasOne("Task4.Areas.Models.Category", "Category")
+                    b.HasOne("MyASPDemos.Models.Category", "Category")
                         .WithMany("Books")
                         .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("Task4.Models.Author", b =>
-                {
-                    b.HasOne("Task4.Areas.Models.Book", "Book")
-                        .WithMany("Authors")
-                        .HasForeignKey("BookId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

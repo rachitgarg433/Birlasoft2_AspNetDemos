@@ -45,7 +45,13 @@ namespace MyASPDemos.Models
 
 
         #endregion
+       
+        #region Navigation Properties to Author Model
 
+        [JsonIgnore]
+        public ICollection<Author> Authors { get; set; }
+
+        #endregion
 
 
     }

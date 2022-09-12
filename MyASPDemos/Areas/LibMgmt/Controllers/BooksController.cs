@@ -14,6 +14,7 @@ namespace MyASPDemos.Areas.LibMgmt.Controllers
     public class BooksController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private object viewmodel;
 
         public BooksController(ApplicationDbContext context)
         {
@@ -23,10 +24,18 @@ namespace MyASPDemos.Areas.LibMgmt.Controllers
         // GET: LibMgmt/Books
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Book.Include(b => b.Category);
+            var applicationDbContext = _context.Books.Include(b => b.Category);
             return View(await applicationDbContext.ToListAsync());
         }
 
+        public async Task<ActionResult> GetBooksOfCategory(int filterCategoryId)
+        {
+            var viewmodel = await _context.Books
+                                               .Where(b=> b.CategoryId == filterCategoryId)
+                                               .Include(b => b.Category)
+                                               .ToListAsync();
+            return View(viewName: "Index" ,model:viewmodel);
+        }
         // GET: LibMgmt/Books/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -35,7 +44,7 @@ namespace MyASPDemos.Areas.LibMgmt.Controllers
                 return NotFound();
             }
 
-            var book = await _context.Book
+            var book = await _context.Books
                 .Include(b => b.Category)
                 .FirstOrDefaultAsync(m => m.BookId == id);
             if (book == null)
@@ -78,7 +87,7 @@ namespace MyASPDemos.Areas.LibMgmt.Controllers
                 return NotFound();
             }
 
-            var book = await _context.Book.FindAsync(id);
+            var book = await _context.Books.FindAsync(id);
             if (book == null)
             {
                 return NotFound();
@@ -131,7 +140,7 @@ namespace MyASPDemos.Areas.LibMgmt.Controllers
                 return NotFound();
             }
 
-            var book = await _context.Book
+            var book = await _context.Books
                 .Include(b => b.Category)
                 .FirstOrDefaultAsync(m => m.BookId == id);
             if (book == null)
@@ -147,15 +156,15 @@ namespace MyASPDemos.Areas.LibMgmt.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var book = await _context.Book.FindAsync(id);
-            _context.Book.Remove(book);
+            var book = await _context.Books.FindAsync(id);
+            _context.Books.Remove(book);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool BookExists(int id)
         {
-            return _context.Book.Any(e => e.BookId == id);
+            return _context.Books.Any(e => e.BookId == id);
         }
     }
 }

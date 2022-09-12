@@ -19,9 +19,9 @@ namespace MyASPDemos.Data
 
         public DbSet<Category> Categories { get; set; }
 
-        public DbSet<MyASPDemos.Models.Book> Book { get; set; }
+        public DbSet<Book> Books { get; set; }
 
-        public DbSet<MyASPDemos.Models.Author> Author { get; set; }
+        public DbSet<Author> Authors { get; set; }
 
        
     }

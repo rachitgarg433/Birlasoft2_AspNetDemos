@@ -23,7 +23,7 @@ namespace MyASPDemos.Areas.LibMgmt.Controllers
         // GET: LibMgmt/Authors
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Author.Include(a => a.Book);
+            var applicationDbContext = _context.Authors.Include(a => a.Book);
             return View(await applicationDbContext.ToListAsync());
         }
 
@@ -35,7 +35,7 @@ namespace MyASPDemos.Areas.LibMgmt.Controllers
                 return NotFound();
             }
 
-            var author = await _context.Author
+            var author = await _context.Authors
                 .Include(a => a.Book)
                 .FirstOrDefaultAsync(m => m.AuthorId == id);
             if (author == null)
@@ -49,7 +49,7 @@ namespace MyASPDemos.Areas.LibMgmt.Controllers
         // GET: LibMgmt/Authors/Create
         public IActionResult Create()
         {
-            ViewData["BookId"] = new SelectList(_context.Book, "BookId", "BookTitle");
+            ViewData["BookId"] = new SelectList(_context.Books, "BookId", "BookTitle");
             return View();
         }
 
@@ -66,7 +66,7 @@ namespace MyASPDemos.Areas.LibMgmt.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["BookId"] = new SelectList(_context.Book, "BookId", "BookTitle", author.BookId);
+            ViewData["BookId"] = new SelectList(_context.Books, "BookId", "BookTitle", author.BookId);
             return View(author);
         }
 
@@ -78,12 +78,12 @@ namespace MyASPDemos.Areas.LibMgmt.Controllers
                 return NotFound();
             }
 
-            var author = await _context.Author.FindAsync(id);
+            var author = await _context.Authors.FindAsync(id);
             if (author == null)
             {
                 return NotFound();
             }
-            ViewData["BookId"] = new SelectList(_context.Book, "BookId", "BookTitle", author.BookId);
+            ViewData["BookId"] = new SelectList(_context.Books, "BookId", "BookTitle", author.BookId);
             return View(author);
         }
 
@@ -119,7 +119,7 @@ namespace MyASPDemos.Areas.LibMgmt.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["BookId"] = new SelectList(_context.Book, "BookId", "BookTitle", author.BookId);
+            ViewData["BookId"] = new SelectList(_context.Books, "BookId", "BookTitle", author.BookId);
             return View(author);
         }
 
@@ -131,7 +131,7 @@ namespace MyASPDemos.Areas.LibMgmt.Controllers
                 return NotFound();
             }
 
-            var author = await _context.Author
+            var author = await _context.Authors
                 .Include(a => a.Book)
                 .FirstOrDefaultAsync(m => m.AuthorId == id);
             if (author == null)
@@ -147,15 +147,15 @@ namespace MyASPDemos.Areas.LibMgmt.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var author = await _context.Author.FindAsync(id);
-            _context.Author.Remove(author);
+            var author = await _context.Authors.FindAsync(id);
+            _context.Authors.Remove(author);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool AuthorExists(int id)
         {
-            return _context.Author.Any(e => e.AuthorId == id);
+            return _context.Authors.Any(e => e.AuthorId == id);
         }
     }
 }

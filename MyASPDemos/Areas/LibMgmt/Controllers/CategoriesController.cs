@@ -14,17 +14,41 @@ namespace MyASPDemos.Areas.LibMgmt.Controllers
     public class CategoriesController : Controller
     {
         private readonly ApplicationDbContext _context;
-
+        
+        // Receive the registered ApplicationDbContext through the DI Container.
+        // The registration was done in the Startup.cs ConfigureServices() method.
         public CategoriesController(ApplicationDbContext context)
         {
             _context = context;
         }
 
+        //------- ASynchronous Version of the Index method
+        //        which internally calls another Async method ( ToListAsync() ).
         // GET: LibMgmt/Categories
+
+
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Categories.ToListAsync());
+            var viewmodel =await _context.Categories
+                                         .Include(c => c.Books)
+                                         .ToListAsync();
+            return View(viewmodel);
         }
+
+        //------- Synchronous Version of the Index method
+        //public IActionResult Index()
+        //{
+        //    var viewmodel = _context.Categories.Include(c => c.Books).ToList();
+        //    return View(viewmodel);
+        //}
+
+        //------- Asynchronous Version of the Index method
+        //public Task<IActionResult> Index()
+        //{
+        //    var viewmodel = _context.Categories.Include(c => c.Books).ToList();
+        //    return View(viewmodel);
+        //}
+
 
         // GET: LibMgmt/Categories/Details/5
         public async Task<IActionResult> Details(int? id)

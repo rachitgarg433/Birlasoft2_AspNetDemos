@@ -4,11 +4,13 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using MyASPDemos.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.SqlServer;
 namespace MyASPDemos
 {
     public class Startup
@@ -23,7 +25,26 @@ namespace MyASPDemos
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddRazorPages();
+            //NOTE This shouls always be the first service registered in the configureService() methodp
+            //Register the entity Framework core services to use Sql Server
+            //Register the ApplicationDbContext as a service thet can be used using Dependency Injection (DI)
+          
+            
+            services             /*************************************************************************
+                                  * 
+                 
+                    * */
+               .AddDbContext<ApplicationDbContext>(options =>
+               {
+                   string connString = Configuration.GetConnectionString("MyDefaultConnectionString");
+                   options.UseSqlServer(connString);
+               });
+                                        ////////////////////////////////////////////////////////******//////
+
+
+
+            services
+                .AddRazorPages();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

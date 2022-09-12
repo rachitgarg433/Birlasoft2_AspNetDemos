@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace Task4.Areas.Controllers
+namespace Task4a.Areas.Demo.Controllers
 {
     public class HomeController : Controller
     {

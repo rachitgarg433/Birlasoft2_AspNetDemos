@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Task4.Areas.Models;
-using Task4.Models;
 
 // Add the following Nuget packages:
 //  (a) Microsoft.EntityFrameworkCore.SqlServer         (ver 3.x)
